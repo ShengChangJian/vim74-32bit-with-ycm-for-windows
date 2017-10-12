@@ -1,0 +1,8 @@
+1、需要添加gvim.exe的路径到path，修改\Vim\vimfiles\bundle\YouCompleteMe\python中.ycm_extra_conf.py里面的路径
+
+2、安装Python2.7.10（youcomplete和Javacomplete需要）并添加路径
+
+3、安装perl，并添加perl的bin路径（并且要求放在perl/site/bin之前，否则可能在cmd中输入perl -v报错，vgdb插件也无法用），注意修改vim74文件夹中vgdb.bat中的路径；如果因为引入vgdbc.dll造成runtime error，则需要下载多个版本的vgdb，然后用其中的vgdbc.dll逐个去试，直到不出现错误
+
+4/如果要编程编译的话，需要配置gcc,gdb的路径:
+所以要和minGW一起移动，并配置minGW的路径

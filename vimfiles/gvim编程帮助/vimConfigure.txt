@@ -1,0 +1,112 @@
+一、vim 的编译与安装
+
+ubuntu 下源码编译vim的亲测方法
+
+1、前言
+
+本人从ubuntu开始接触vim，在window下开始了解gvim插件的配置，但是在window下有个问题就是想要自己编译vim很困难
+（鄙人功力不够，在windows下的ycm插件就从未成功过。。），造成有很多功能缺失。参考此处比较靠谱的vim配置，
+这个文章的作者是在linux的基础上进行教学的。受够了windows下功能缺失的vim后，鄙人决定返回新出来的ubuntu16.04，开始配置自己的vim。
+
+然而，事实上，上面这个链接的vim配置还是有一定的问题的，不知道是作者的问题还是本人机子的问题，源码编译vim出错很多，
+因为总是没有办法弄上perl，ruby，lua等接口，经过3个小时的网上摸索后，鄙人终于成功弄出了vim的接口，为了节约大家的时间，
+也为了以后方便自己查阅，故，在这里留下一点点笔记。。
+
+2、亲测安装流程简述
+
+首先，上文的链接中的教程中的vim编译，config的命令具有一定的错误。。。此处做一些补充。。
+1、首先，要在ubuntu上安装好各自的语言支持，python，ruby等等。然后，还要装上相应的依赖包，用apt-get来获得。安装对应的
+python-dev, python3-dev, liblua5.1-dev, ruby-dev（如果需要perl，加一个libperl-dev ）（ps：如果找不到对应的软件包，
+有可能是软件源的问题，还有可能是名字不对）
+
+2、sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev 
+libcairo2-dev libx11-dev libxpm-dev libxt-dev 这些库都要装。
+
+3、安装 gtk2-devel 时应该要用：sudo apt-get install libgtk2.0-dev 安装 gtk3-devel 时应该要用：sudo apt-get install libgtk-3-dev
+
+4、开始编译，编译的config命令自己的测试是
+
+./configure --with-features=huge --enable-gui=gtk2 --enable-cscope --prefix=/usr --enable-python3interp=yes --enable-pythoninterp=yes --with-python-config-dir=/usr/lib/python2.7/config/ --enable-perlinterp=yes --enable-luainterp=yes --with-lua-prefix=/usr/ --enable-rubyinterp=yes
+    
+（此处比上面教程的多了不少东西，编译出来后的支持有python,python3,lua, perl, ruby）
+（上面的这段 代码就是鄙人花费近2个小时弄出来的。。。）
+（最近又发现了一个坑。之前由于贪多，同时在config里面引用了python3.5和python2的库，最后配置发现用python写的插件都用不了，
+我的感觉是两者有一点点冲突了，所以在上面的命令里就没有采用python3的库，亲测编译后成功，如果读者需要python3的支持，
+链接库的时候可以加上下面这句，同时把上面类似的关于python2 的库的引用命令给去掉）
+
+--with-python3-config-dir=/usr/lib/python3.5/config/
+
+接下来就make， make install 即可
+
+3、备注：
+(1)、关于ubuntu下的编译命令的小白理解：
+
+1）./config 命令可以使用多次，但是产生的编译信息是最后一次执行这个命令的结果，并不可以多次执行./config来进行功能叠加，
+通俗来说，就是一次过。
+
+2）如果想要多次编译应该要怎么办？
+进入源码文件夹里面的src目录，执行命令：make distclean 执行后再次进行config，make 和make install
+
+(2)、关于ubuntu下的vim配置
+
+在用户家目录(/home/用户名)下面有一个.vimrc, /etc下面也有一个vimrc,一般只改用户家目录下面的 .vimrc 此配置文件只针对用户有效
+更改后需使用su - 用户名 来使配置生效(例如 su - zhang3),.vimrc为隐藏文件 使用ls -al可查看home目录下，
+自动生成的是.viminfo, .vimrc和.vim/都要自己建前面有.的都可以看做是隐藏文件，所以要用ls -al来看
+
+(3)、后期说明
+
+这篇文章只是对文章开头的那个链接的github教程的补充，阅读此文若参考教程可能更容易理解。因为vim的配置实在是太个性化了，
+对于我这种初学者来说，我是通过这篇教程来开始入门的。（再次发一次链接）
+
+这个方法是本人经过长时间的懵逼摸索后得出的，可能在回忆的过程中出现一点点错误和漏洞，不排除有错误的情况出现。
+不过，如果各位也是初学者，也为类似问题搞到焦头烂额的时候，这个方法不妨尝试一番。
+
+二、vim 配置
+
+1、Vundle 的安装与使用：
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+或者自己从github上区搜索，然后得到对应的git地址。
+
+接下来在~/.vimrc文件中加入下面内容：
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle '其他的 github 位置...'
+filetype plugin indent on
+"至于Bundle 后面如何填就需要查看Vundle的官方说明，并去github搜索相应的插件得到地址。
+
+可见 Vundle 可以自动下载插件，有了它就不用拷贝插件了。只要有一个配置文件就可以走遍天下而保持vim配置与操作习惯不变了。不过它不能
+在不删除插件的情况下禁用插件。这个就需要pathogen了。
+
+2、paithogen 插件安装
+
+可以通过 Vundle 下载，然后也就是在 ~/.vim目录下（如果没有，则新建）新建目录autoload、bundle（插件会放在这个目录），
+然后将 pathogen.vim 放在autoload目录下即可.
+
+要启用pathogen，还需要在~/.vimrc 文件里, filetype plugin indent on 之前的任何地方，加入下面这句：
+
+3、YoucompleteMe 插件
+
+它依赖clang，所以需要先编译安装clang（需要编写测试程序检测是否安装成功），一般系统 apt-get 安装的clang版本过低，
+需要自己编译安装或者（最好）去官网下载预编译版安装。然后 Vundle 下载该插件，之后按照插件说明进行编译安装并在vim配置文件中进行
+配置。注意在填写该插件对应的py配置文件时，需要先得知g++的include搜索路径（`命令为g++ -print-prog-name=cc1plus` -v）。
+
+4、vimproc.vim 需要编译，其他插件的使用请到github搜索并插件文档。
+
+5、建议：最好熟练使用vim自带的各种功能，只有像自动补全等这样的插件才是必须的。注意安装插件是为了提高效率，但同时会影响vim速度。
+同时缺乏通用性。
+
+6、尽量少的去定义映射，因为可能会影响vim的内置功能。
+
+7、echofunc 插件需要修改其中的内容，以便配合命令行为2行的设置（echofunc 默认命令行为一行）。为了配合 autotag 插件，需要修改autotag
+插件目录下py文件，替换 ctags 为echofunc官方要求。
+
+8、vim-airline 插件：需要安装字体，同时做好设置配合echofunc状态栏显示函数原型。
+
+9、vim-man为了配合 shell 使用 man 需要按照官方文档进行设置。同时，为了使vim中c编程能快速得到帮助，可以在normal模式下使用shift-k
+，要想跳到vim-man的帮助文档，需要对这个组合重新进行映射。详细请参考已经配置好的vimrc。
+
+10、操作系统需要安装 ctags 和 cscope 以便使用源码快速搜索和定位功能，以及使用基于它们的其他插件。
+
+11、solarized主题，需要设置终端的配置文件中颜色的内置方案为solarized，然后vim中才有相应的效果。

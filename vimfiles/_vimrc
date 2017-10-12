@@ -1,0 +1,10 @@
+"=======================================================
+"gpathoge管理vim插件使用
+filetype plugin indent off
+
+call pathogen#infect()  
+syntax on  
+filetype plugin indent on 
+
+
+"=======================================================

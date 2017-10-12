@@ -1,0 +1,6 @@
+由于gcc输入输出默认编码为utf-8，但Windows的cmd默认编码为GBK（可以通过chcp命令查看）。
+从而导致乱码。
+
+解决方法：指定输入编码，如gcc -finput-charset=GBK -fexec-charset=UTF-8 -o test test.c（注意：-fexec-charset=UTF-8可以不用，因为默认就是这个）
+
+【注意】使用make的时候也不要忘了这个

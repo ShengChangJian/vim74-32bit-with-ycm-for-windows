@@ -1,0 +1,28 @@
+1、把源文件保存为UTF-8的格式(不过用记事本另成为可能仍有问题，最好用gvim命令:set fenc=UTF-8,然后:w!保存)
+2、设置fontname（请参照下面的例子）
+
+【例子】例如第三行所示
+digraph G {
+edge [fontname="FangSong"];
+node [shape=box, fontname="FangSong" size="20,20"];
+{
+Lexical_Analyzer [label="HelloWorld"];
+Syntax_Analyzer [label="语法分析器"  ];
+Semantic_Analyzer [label="语义分析"   ];
+Intermediate_Code_Generator [label="中间代码生成器" ];
+Machine_Independent_Code_Optimizer [label="机器无关代码优化器"   ];
+Code_Generator [label="代码生成器" ];
+Machine_Dependent_Code_Optimizer [label="机器相关代码优化器"  ];
+}
+node[shape=plaintext, fontname="KaiTi" ]{
+character_stream [label="字符流"];
+target_machine_code [label="目标机器语言" ];
+}character_stream ->Lexical_Analyzer;
+Lexical_Analyzer ->Syntax_Analyzer [label="符号流"];
+Syntax_Analyzer  ->Semantic_Analyzer  [label="语法树"];
+Semantic_Analyzer  ->Intermediate_Code_Generator  [label="语法树"] ;
+Intermediate_Code_Generator->Machine_Independent_Code_Optimizer  [label="中间表示形式"];
+Machine_Independent_Code_Optimizer  ->Code_Generator  [label="中间表示形式"];
+Code_Generator ->Machine_Dependent_Code_Optimizer [label="目标机器语言"];
+Machine_Dependent_Code_Optimizer->target_machine_code ;
+}

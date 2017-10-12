@@ -1,0 +1,5 @@
+解决方法：
+方法一、安装open-vm-dkms用sudo apt-get install open-vm-dkms
+
+方法二、 在/mnt/hgfs目录下终端输入vmware-hgfsclient
+

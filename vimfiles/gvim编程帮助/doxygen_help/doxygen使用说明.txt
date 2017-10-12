@@ -1,0 +1,8 @@
+【注意】先安装doxygen，并添加bin目录到path中
+
+(1)生成默认配置文件用doxygen -g
+(2)为了输出中文注释需要修改生成的Doxyfile，用记事本等打开Doxyfile文件，搜索非注释（#）里的UTF-8，用GBK替换它，保存
+(3)如果需要输出chm文档，则修改Doxyfile，搜索GENERATE_HTMLHELP，设置为YES，同时设置HHC_LOCATION，其值为"C:\Program Files\HTML Help Workshop\hhc.exe"(注意：如果没有安装hhc.exe,需要去http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=21138下载并安装htmlhelp.exe)
+(4)如果不需要输出LaTex文档，则修改Doxyfile，搜索GENERATE_LATEX，设置为NO
+
+【注意】修改Doxyfile文件，也可以在Doxyfile所在目录用命令行doxywizard Doxyfile进行图形化修改

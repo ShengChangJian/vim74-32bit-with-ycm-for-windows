@@ -1,0 +1,10 @@
+http://tieba.baidu.com/p/4021258742
+
+授人以鱼不如授人以渔? 
+1. 最新自编译的 YouCompleteMe for Windows 版 
+32bit https://github.com/snakeleon/YouCompleteMe-x86
+64bit https://github.com/snakeleon/YouCompleteMe-x64 (9.6号节后再更新)
+请细读索引下方 [中文入门指引]，文笔不好，有何指教请与我联系。
+2. 最新的VIM for Windows 版 （妈妈再也不用担心VIM版本补丁更新啦）
+https://tuxproject.de/projects/vim/
+喜欢的可以赞助他服务器租用费。

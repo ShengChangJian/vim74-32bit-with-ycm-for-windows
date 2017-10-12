@@ -1,0 +1,4 @@
+1、youcompleteme在java时也开启了，所以需要
+autocmd filetype java let g:ycm_auto_trigger=0吧ycm关掉
+
+2、对于自己建立的类或函数，Javacomplete不能补全的，可以使用Ctrl+x+p启用neocomplete进行补全

@@ -1,0 +1,18 @@
+1、http://releases.llvm.org/download.html下载Pre-Built Binaries文件
+2、解压之后将其中包括bin等在内的所有文件拷贝：sudo cp -rf * /usr/local
+3、加上 libc++
+   （1）到第1点中的网站下载libcxx，解压之后进入lib目录，然后sudo ./buildit
+    (2) cp libc++abi.so.1.0 /usr/lib/
+	ln -s libc++.so.1.0  libc++.so.1
+	ln -s libc++.so.1.0  libc++.so
+4、加上libcxxabi
+   （1）到第1点中的网站下载libcxxabi，解压之后进入lib目录，然后sudo ./buildit	
+   （2）如果出现重定义和linker错误，则需要除/src/cxa_noexception.cpp文件。如果还是报错，检查是否存在lib/cxa_noexception.o文件，删除即可。再次回到（1）
+	cp libc++abi.so.1.0 /usr/lib/
+	ln -s libc++abi.so.1.0 libc++abi.so.1
+	ln -s libc++abi.so.1.0 libc++abi.so
+5、测试：
+   （1）clang -v
+   （2）编写c++文件test.cpp，然后
+	clang++ -std=c++11 -stdlib=libc++ -Werror -Weverything -Wno-disabled-macro-expansion -Wno-float-equal -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-global-constructors -Wno-exit-time-destructors -Wno-missing-prototypes -Wno-padded -Wno-old-style-cast -lc++ -lc++abi test.cpp
+	如果编译成功，则表示clang安装成功

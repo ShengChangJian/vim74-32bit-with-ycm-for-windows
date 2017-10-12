@@ -1,0 +1,5 @@
+（1）假设java文件为gui.java放在C:\javaWorkSpace\src中，gui.java中有package com.guiapp，编译通过，但运行时出现“错误: 找不到或无法加载主类”，则可以做如下处理：
+
+编译完后，要回到C:\javaWorkSpace\src目录下，然后执行 java  com.guiapp.gui 即可。
+
+(2)把java.bat放入源文件目录，也可以把它放到vim74中添加系统环境变量

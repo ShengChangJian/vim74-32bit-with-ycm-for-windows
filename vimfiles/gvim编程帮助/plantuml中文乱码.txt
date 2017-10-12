@@ -1,0 +1,7 @@
+（1）第一种方案：java -jar plantuml.jar -charset UTF-8 -tpng demo.uml（注意源文件是utf-8编码的）
+【注意】这种方案已经写入了vim74下plantum.bat中,gvim中使用F8编译时默认该方法（当然可以修改vimrc文件）
+
+（2）第二种方案：在gvim中用命令:set fenc=GBK然后用:w!保存，java -jar plantuml.jar -tpng demo.uml即可
+
+【快速入门】
+http://www.jianshu.com/p/e92a52770832

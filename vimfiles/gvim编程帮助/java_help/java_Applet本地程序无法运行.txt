@@ -1,0 +1,9 @@
+【问题描述】
+
+1.8以上版本的Java运行时会对applet小程序运行进行安全校验，并自动阻止非可信的applet运行
+
+【解决办法】
+
+1、web方式调用可以按如下方式解决：http://java.com/zh_CN/download/help/jcp_security.xml
+
+2、本地程序被阻止，则在java安全页签中添加file站点配置，"file:///”即可运行本地所有java applet运行

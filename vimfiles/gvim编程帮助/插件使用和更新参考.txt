@@ -1,0 +1,8 @@
+使用：http://blog.csdn.net/helonsy/article/details/7374365
+
+【更新】
+NERDTree插件已经安装完成了！可以看到这种方式比传统的vim插件安装方式简单多了！
+而要卸载该插件也非常简单，只需要在~/.vim/bundle/目录下删除nerdtree目录即可，干净利落！
+要更新该插件到最新版本，只需要进入到该目录~/.vim/bundle/nerdtree/，并执行以下命令：
+
+git pull origin  

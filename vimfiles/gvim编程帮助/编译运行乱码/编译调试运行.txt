@@ -1,0 +1,5 @@
+1、在PATH里加入G:\MinGW\bin，记得，如果里面还有其他的变量，记得要加个分号啊，分号得在英文输入模式下输入的。
+2、新建LIBRARY_PATH变量，如果有的话，在值中加入G:\MinGW\lib，这是标准库的位置。
+3、新建C_INCLUDEDE_PATH变量，值设为G:\MinGW\include。
+4、新建CPLUS_INCLUDE_PATH变量，值为G:\MinGW\include;G:\MinGW\include\c++\4.5.0;G:\MinGW\include\c++\4.5.0\backward;G:\MinGW\include\c++\4.5.0\mingw32 
+具体路径请根据你的MinGW选择。

@@ -1,0 +1,3 @@
+1、当我新建gui.txt文件再改名为gui.java用gvim写完代码（含中文）javac出现“错误编码GBK的不可映射字符”，①可以通过javac -encoding utf-8 gui.java解决，但在jdb时会出现中文乱码；②也可以用记事本打开，再另存为，选择ANSI编码，覆盖原文件即可
+
+2、可以直接用gvim新建gui.java不会出现此类错误(或者在gvim中使用命令:set fenc=GBK在使用命令:w!保存)
