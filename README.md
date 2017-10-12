@@ -65,4 +65,8 @@ gcc 即可，查看 c 则将 c++ 替换成 c 即可）；
 
 *如果你没有 gcc 或 g++ ，则你需要安装 MinGW 或 cygwin 等下的 gcc 或 g++ 编译器。*
 
+当然不想使用 gcc 或 g++ 等，而想使用 VC 或 VC++，但又不想安装 VS 的小伙伴可以克隆本人的另一个
+项目 ```vc2008-for-gvim-or-other-editor``` 并且将其中的 ```.ycm_extra_conf.py``` 文件替换前面提到
+的 ```.ycm_extra_conf.py``` 文件。也可以根据```vc2008-for-gvim-or-other-editor```中的指南操作。
+
 有什么问题请联系 socojo@qq.com ，说明问题的时候请写好主题和项目名称，以便更好的定位和为您解决问题。
