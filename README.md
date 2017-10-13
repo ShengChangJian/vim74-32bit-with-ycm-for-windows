@@ -63,7 +63,9 @@ gcc 即可，查看 c 则将 c++ 替换成 c 即可）；
 + 然后编辑一个 cpp 文件进行测试（当然编译之前要添加 gcc 或 g++ 的路径到 path 中，也就是说要保证
 在 cmd 中输入 gcc -v 或 g++ -v 有版本信息输出）
 
-*如果你没有 gcc 或 g++ ，则你需要安装 MinGW 或 cygwin 等下的 gcc 或 g++ 编译器。*
+*如果你没有 gcc 或 g++ ，则你需要安装 MinGW 或 cygwin（可以参考使用这些类linux环境是如何搭建 C/C++ 开发环境的） 
+等下的 gcc 或 g++ 编译器。*（当然，如果你是 java 爱好者也可以使用本项目进行 java 开发，只要你配置好 java SDk 开发环境，
+调试环境和构建环境，比如 jdb、ant等。）
 
 当然不想使用 gcc 或 g++ 等，而想使用 VC 或 VC++，但又不想安装 VS 的小伙伴可以克隆本人的另一个
 项目 ```vc2008-for-gvim-or-other-editor``` 并且将其中的 ```.ycm_extra_conf.py``` 文件替换前面提到
